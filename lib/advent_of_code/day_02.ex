@@ -23,7 +23,7 @@ defmodule AdventOfCode.Day02 do
       |> Enum.map(&String.split/1)
       |> Enum.map(&rps/1)
       |> Enum.sum
-      |> IO.inspect(label: "Part 1 Results")
+      # |> IO.inspect(label: "Part 1 Results")
   end
 
   def part2() do
@@ -35,7 +35,7 @@ defmodule AdventOfCode.Day02 do
       |> Enum.map(&String.split/1)
       |> Enum.map(&rpr/1)
       |> Enum.sum
-      |> IO.inspect(label: "Part 2 Results")
+      # |> IO.inspect(label: "Part 2 Results")
   end
 
   def rps(["A", "X"]), do: @rock + @draw

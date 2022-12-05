@@ -1,9 +1,9 @@
-defmodule AdventOfCode.Day03Test do
+defmodule AdventOfCode.DayXTest do
   use ExUnit.Case
 
-  import AdventOfCode.Day03
+  import AdventOfCode.DayX
 
-  # @tag :skip
+  @tag :skip
   test "part1" do
     input = ["A Y", "B X", "C Z"]
     result = part1(input)

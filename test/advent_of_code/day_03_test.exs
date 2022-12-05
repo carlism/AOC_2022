@@ -1,21 +1,40 @@
-defmodule AdventOfCode.DayXTest do
+defmodule AdventOfCode.Day03Test do
   use ExUnit.Case
 
-  import AdventOfCode.DayX
+  import AdventOfCode.Day03
 
-  @tag :skip
+  def test_input() do 
+  ["vJrwpWtwJgWrhcsFMMfFFhFp",
+  "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+  "PmmdzqPrVvPwwTWBwg",
+  "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+  "ttgJtRGJQctTZtZT",
+  "CrZsJsPPZsGzwwsLwLmpwMDw"]
+  end
+  
   test "part1" do
-    input = ["A Y", "B X", "C Z"]
-    result = part1(input)
+    result = part1(test_input())
 
-    assert result == 15
+    assert result == 157
   end
 
-  @tag :skip
-  test "part2" do
-    input = ["A Y", "B X", "C Z"]
-    result = part2(input)
+  test "compartments" do
+    result = compartments(test_input() |> List.last )
 
-    assert result == 12
+    assert result == {"CrZsJsPPZsGz","wwsLwLmpwMDw"}
   end
+
+  test "shared item" do 
+   input = test_input() |> List.last |> compartments
+
+   assert shared(input) ==["s"]
+  end
+
+  test "charlist value" do
+    assert priority(["a"]) == 1
+    assert priority(["z"]) == 26
+    assert priority(["A"]) == 27
+    assert priority(["Z"]) == 52
+  end 
+
 end
