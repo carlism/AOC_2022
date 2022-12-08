@@ -7,20 +7,35 @@ defmodule AdventOfCode.Day06 do
   end
 
   def part1() do
-    part1(input() |> String.split("\n"))
+    part1(input())
   end
 
   def part1(input) do
-    input
-      |> IO.inspect(label: "Part 1 Results")
+    input |> detect_unique
+  end
+
+  def detect_unique(input, len \\ 4) do
+    (0..String.length(input)
+    |> Enum.take_while(fn index -> 
+      input |> String.slice(index..(index+len-1)) |> detect_start
+    end)
+    |> Enum.count) + len
   end
 
   def part2() do
-    part2(input() |> String.split("\n"))
+    part2(input())
   end
 
   def part2(input) do
-    input 
-      |> IO.inspect(label: "Part 2 Results")
+    input |> detect_unique(14)
   end
+
+  def detect_start(input) do
+    input |> String.to_charlist |> Enum.sort
+    |> Enum.chunk_by(&(&1)) 
+    |> Enum.map(&Enum.count/1)
+    |> Enum.map(&(&1>1))
+    |> Enum.any?
+  end
+
 end

@@ -4,10 +4,11 @@ defmodule AdventOfCode.DayX do
 
   def input() do
     AdventOfCode.Input.get!(@day, @year)
+     |> String.split("\n", trim: true)
   end
 
   def part1() do
-    part1(input() |> String.split("\n"))
+    part1(input())
   end
 
   def part1(input) do
@@ -16,7 +17,7 @@ defmodule AdventOfCode.DayX do
   end
 
   def part2() do
-    part2(input() |> String.split("\n"))
+    part2(input())
   end
 
   def part2(input) do
