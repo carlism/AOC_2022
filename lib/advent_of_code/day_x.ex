@@ -13,7 +13,6 @@ defmodule AdventOfCode.DayX do
 
   def part1(input) do
     input
-      |> IO.inspect(label: "Part 1 Results")
   end
 
   def part2() do
@@ -22,6 +21,5 @@ defmodule AdventOfCode.DayX do
 
   def part2(input) do
     input 
-      |> IO.inspect(label: "Part 2 Results")
   end
 end

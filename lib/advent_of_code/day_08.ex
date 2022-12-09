@@ -15,7 +15,7 @@ defmodule AdventOfCode.Day08 do
     data = input
     |> parse()
     visible_edges(data) + visible_interior(data)
-      |> IO.inspect(label: "Part 1 Results")
+      # |> IO.inspect(label: "Part 1 Results")
   end
 
   def part2() do
@@ -26,7 +26,7 @@ defmodule AdventOfCode.Day08 do
     data = input
     |> parse()
     score_interior(data)
-      |> IO.inspect(label: "Part 2 Results")
+      # |> IO.inspect(label: "Part 2 Results")
   end
 
   def score_interior(data) do
