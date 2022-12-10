@@ -17,14 +17,14 @@ defmodule AdventOfCode.Day09 do
         _ -> ty
       end
       {new_tx, new_ty}
-    end  
+    end
   end
 
   def move(direction, {{hx,hy},{tx,ty}}) do
     new_head = move_head(direction, {hx,hy})
     {new_head,move_tail({new_head,{tx,ty}})}
   end
-  
+
   def move_head("U", {hx,hy}), do: {hx,hy+1}
   def move_head("D", {hx,hy}), do: {hx,hy-1}
   def move_head("L", {hx,hy}), do: {hx-1,hy}
@@ -33,7 +33,7 @@ defmodule AdventOfCode.Day09 do
   def expand_move([move, count]) do
     String.duplicate(move, count) |> String.codepoints()
   end
-  
+
   def input() do
     AdventOfCode.Input.get!(@day, @year)
      |> String.split("\n", trim: true)
@@ -45,13 +45,13 @@ defmodule AdventOfCode.Day09 do
 
   def part1(input) do
     input
-    |> Enum.map(fn line -> line 
-      |> String.split() 
+    |> Enum.map(fn line -> line
+      |> String.split()
       |> then(fn [m,c] -> [m,String.to_integer(c)] end)
       |> expand_move()
     end)
     |> List.flatten()
-    |> Enum.map_reduce({{0,0},{0,0}}, fn m, last -> 
+    |> Enum.map_reduce({{0,0},{0,0}}, fn m, last ->
       next = move(m, last)
       {next, next}
     end)
@@ -62,26 +62,26 @@ defmodule AdventOfCode.Day09 do
 
 
   def tuple_first({result,_}), do: result
-  
+
   def part2() do
     part2(input())
   end
 
   def part2(input) do
-    input 
-    |> Enum.map(fn line -> line 
-      |> String.split() 
+    input
+    |> Enum.map(fn line -> line
+      |> String.split()
       |> then(fn [m,c] -> [m,String.to_integer(c)] end)
       |> expand_move()
     end)
     |> List.flatten()
-    |> Enum.map_reduce(Tuple.duplicate({0,0},10), fn m, string -> 
-    
+    |> Enum.map_reduce(Tuple.duplicate({0,0},10), fn m, string ->
+
       [head | rest] = string |> Tuple.to_list
       next_head = move_head(m, head)
-      next_string = [next_head | rest 
+      next_string = [next_head | rest
         |> Enum.map_reduce(next_head, fn knot, last_knot ->
-    
+
           next_knot = move_tail({last_knot, knot})
           { next_knot, next_knot }
         end)
@@ -90,7 +90,7 @@ defmodule AdventOfCode.Day09 do
       {next_string, next_string}
     end)
     |> tuple_first()
-    
+
     |> Enum.map(fn string -> string |> Tuple.to_list() |> List.last() end)
     |> Enum.uniq |> Enum.count
   end
